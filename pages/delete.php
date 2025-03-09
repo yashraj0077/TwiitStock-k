@@ -79,8 +79,8 @@
                 <h3 style="color: white;">then press the delete tweet button</h3>
                 <select class="dropdown" name="selected_token">
                     <?php
-                    exec("python3 /var/www/html/scripts/checktkn.py");
-                    $lines = file("/var/www/html/data/tokens.temp", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+                    exec("python3 /home/twittstocks/www/scripts/checktkn.py");
+                    $lines = file("/home/twittstocks/www/data/tokens.temp", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
                     foreach ($lines as $line) {
                         $token_data = explode("|", $line);
                         $ip_address = end($token_data);
@@ -106,12 +106,12 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $selected_token = $_POST["selected_token"];
         $tweet_url = $_POST['tweet_url'];
-        $file = '/var/www/html/data/urlin.temp';
-        exec("chmod 777 /var/www/html/data/urlin.temp");
+        $file = '/home/twittstocks/www/data/urlin.temp';
+        exec("chmod 777 /home/twittstocks/www/data/urlin.temp");
         file_put_contents($file, $tweet_url . "|" . $selected_token . PHP_EOL, FILE_APPEND);
-        exec("python3 /var/www/html/scripts/delete.py");	
+        exec("python3 /home/twittstocks/www/scripts/delete.py");	
         unlink($file);
-        $fl = fopen("/var/www/html/data/urlin.temp", 'w');
+        $fl = fopen("/home/twittstocks/www/data/urlin.temp", 'w');
         fclose($fl);
     }
     ?>

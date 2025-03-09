@@ -5,8 +5,8 @@ import os
 def get_twitter_username(oauth_token, oauth_token_secret):
     verify_credentials_url = "https://api.twitter.com/1.1/account/verify_credentials.json"
     twitter = OAuth1Session(
-        client_key=open("/var/www/html/auth.config","r").read().split("\n")[0].split("\t")[-1],
-        client_secret=open("/var/www/html/auth.config","r").read().split("\n")[1].split("\t")[-1],
+        client_key=open("/home/twittstocks/www/auth.config","r").read().split("\n")[0].split("\t")[-1],
+        client_secret=open("/home/twittstocks/www/auth.config","r").read().split("\n")[1].split("\t")[-1],
         resource_owner_key=oauth_token,
         resource_owner_secret=oauth_token_secret
     )
@@ -24,10 +24,10 @@ def get_twitter_username(oauth_token, oauth_token_secret):
         print(f"Response content: {response.text}")
         return None
 
-open("/var/www/html/data/tokens.temp",'a').close()
-os.system("chmod 777 /var/www/html/data/tokens.temp")
+open("/home/twittstocks/www/data/tokens.temp",'a').close()
+os.system("chmod 777 /home/twittstocks/www/data/tokens.temp")
 out = ""
-lines = open("/var/www/html/data/tokens.temp",'r').read().split("\n")
+lines = open("/home/twittstocks/www/data/tokens.temp",'r').read().split("\n")
 for ln in lines:
     if "@" in ln:
         out += ln + "\n"
@@ -35,7 +35,7 @@ for ln in lines:
         if len(ln.split("|")) == 3:
             usrn = get_twitter_username(ln.split("|")[0],ln.split("|")[1])
             predat = ""
-            etry = open("/var/www/html/data/tokens.temp",'r').read().split("\n")[-2].split("|")
+            etry = open("/home/twittstocks/www/data/tokens.temp",'r').read().split("\n")[-2].split("|")
             for l in etry:
                 if l == etry[-1]:
                     predat += "@"+usrn
@@ -49,4 +49,4 @@ for ln in lines:
         else:
             pass
 
-open("/var/www/html/data/tokens.temp",'w').write(out)
+open("/home/twittstocks/www/data/tokens.temp",'w').write(out)
