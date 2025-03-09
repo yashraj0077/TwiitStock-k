@@ -140,7 +140,7 @@ exec('python3 scripts/getusr.py', $output, $return_var);
         <form method="post">
             <select name="selected_token">
                 <?php
-                $lines = file("/public_html/data/tokens.temp", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+                $lines = file("/home/twittstocks/public_html/data/tokens.temp", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
                 foreach ($lines as $line) {
                     $token_data = explode("|", $line);
                     $ip_address = end($token_data);

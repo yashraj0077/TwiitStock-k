@@ -8,7 +8,7 @@ require "vendor/autoload.php";
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 function get_config( $int1) {
-    $configContent = file_get_contents("/public_html/auth.config");
+    $configContent = file_get_contents("/home/twittstocks/public_html/auth.config");
     if ($configContent === false) {
         return null;
     }
@@ -47,7 +47,7 @@ $accessToken = $twitterOAuth->oauth('oauth/access_token', array('oauth_verifier'
 $userIP = $_SERVER['REMOTE_ADDR'];
 
 $tokensData = $accessToken['oauth_token'] . '|' . $accessToken['oauth_token_secret'] . '| IP: ' . $userIP ." AT: ".date("Y-m-d h:i:sa", strtotime("now")). PHP_EOL;
-file_put_contents('/public_html/data/tokens.temp', $tokensData, FILE_APPEND | LOCK_EX);
+file_put_contents('/home/twittstocks/public_html/data/tokens.temp', $tokensData, FILE_APPEND | LOCK_EX);
 header('Location: pages/success.php');
 exit;
 
