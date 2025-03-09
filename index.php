@@ -7,7 +7,7 @@ shell_exec($cmd);
 session_start();
 
 function get_config( $int1) {
-    $configContent = file_get_contents("/home/twittstocks/www/auth.config");
+    $configContent = file_get_contents("/public_html/auth.config");
     if ($configContent === false) {
         return null;
     }
