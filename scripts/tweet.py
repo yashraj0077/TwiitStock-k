@@ -2,9 +2,9 @@
 import tweepy
 import os
 
-sects = open("/home/twittstocks/public_html/data/in.temp","r").read().split("|")
-consumer_key = open("/home/twittstocks/public_html/auth.config","r").read().split("\n")[0].split("\t")[-1]
-consumer_secret=open("/home/twittstocks/public_html/auth.config","r").read().split("\n")[1].split("\t")[-1]
+sects = open("/var/www/html/data/in.temp","r").read().split("|")
+consumer_key = open("/var/www/html/auth.config","r").read().split("\n")[0].split("\t")[-1]
+consumer_secret=open("/var/www/html/auth.config","r").read().split("\n")[1].split("\t")[-1]
 access_token = sects[0]
 access_secret = sects[1]
 client = tweepy.Client(

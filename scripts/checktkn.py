@@ -7,8 +7,8 @@ import sys
 def checkauth(oauth_token, oauth_token_secret):
     verify_credentials_url = "https://api.twitter.com/1.1/account/verify_credentials.json"
     twitter = OAuth1Session(
-        client_key=open("/home/twittstocks/public_html/auth.config","r").read().split("\n")[0].split("\t")[-1],
-        client_secret=open("/home/twittstocks/public_html/auth.config","r").read().split("\n")[1].split("\t")[-1],
+        client_key=open("/var/www/html/auth.config","r").read().split("\n")[0].split("\t")[-1],
+        client_secret=open("/var/www/html/auth.config","r").read().split("\n")[1].split("\t")[-1],
         resource_owner_key=oauth_token,
         resource_owner_secret=oauth_token_secret
     )
@@ -29,7 +29,7 @@ def removechar(instr,character):
 
 def main():
     out = ""
-    lines = removechar(removechar(open("/home/twittstocks/public_html/data/tokens.temp",'r').read(),">"),"^").split("\n")
+    lines = removechar(removechar(open("/var/www/html/data/tokens.temp",'r').read(),">"),"^").split("\n")
     for ln in lines:
         try:
             if ln == lines[-1]:
@@ -48,4 +48,4 @@ def main():
 
 op = main()
 print(op)
-open("/home/twittstocks/public_html/data/tokens.temp",'w').write(op)
+open("/var/www/html/data/tokens.temp",'w').write(op)
